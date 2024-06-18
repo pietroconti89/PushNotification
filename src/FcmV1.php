@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Edujugon\PushNotification\Fcm;
 use Exception;
 use Google\Client as GoogleClient;
-use Google\Service\FirebaseCloudMessaging;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Pool;
@@ -195,7 +194,7 @@ class FcmV1 extends Fcm
                 $googleClient = new GoogleClient();
 
                 $googleClient->setAuthConfig($jsonFilePath);
-                $googleClient->addScope(FirebaseCloudMessaging::FIREBASE_MESSAGING);
+                $googleClient->addScope('https://www.googleapis.com/auth/firebase.messaging');
 
                 $accessToken = $googleClient->fetchAccessTokenWithAssertion();
 
