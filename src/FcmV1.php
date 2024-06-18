@@ -38,6 +38,13 @@ class FcmV1 extends Fcm
     {
         $this->config = $this->initializeConfig('fcmv1');
 
+        $this->setConfig($this->config);
+    }
+
+    public function setConfig(array $config)
+    {
+        $this->config = array_replace($this->config, $config);
+
         $this->url = 'https://fcm.googleapis.com/v1/projects/' . $this->config['projectId'] . '/messages:send';
 
         $this->client = new Client($this->config['guzzle'] ?? []);
